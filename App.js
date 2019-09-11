@@ -5,7 +5,7 @@ import {DefaultTheme, Provider as PaperProvider} from 'react-native-paper';
 import {Provider as StoreProvider} from 'react-redux';
 import store from './store';
 
-const myTheme = {
+const theme = {
   ...DefaultTheme,
   colors: {
     ...DefaultTheme.colors,
@@ -33,12 +33,12 @@ const myTheme = {
 const App = () => {
   return (
     <StoreProvider store={store}>
-      <PaperProvider theme={myTheme}>
+      <PaperProvider theme={theme}>
         <StatusBar
           barStyle="light-content"
-          hidden={true}
+          hidden={false}
           color="#fff"
-          backgroundColor="#303F9F"
+          backgroundColor={theme.primary}
           translucent={false}
         />
         <AppNavigator />

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Text} from 'react-native-paper';
+import {Text, withTheme} from 'react-native-paper';
 import {FlatList, Image, StyleSheet, View} from 'react-native';
 import {connect} from 'react-redux';
 import {login} from '../actions/user';
@@ -95,4 +95,4 @@ export default connect(
   {
     login: login,
   },
-)(ProfileFriendsComponent);
+)(withTheme(ProfileFriendsComponent));

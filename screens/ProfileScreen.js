@@ -60,7 +60,6 @@ class ProfileScreen extends Component {
         <ProfileUserComponent tabLabel="User" />
         <ProfileFriendsComponent
           tabLabel="Friends"
-          theme={this.props.theme}
           friends={this.state.friends}
         />
         <ProfileConfigurationComponent

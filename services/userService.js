@@ -12,6 +12,14 @@ class UserService {
     return axios.get(`${this.url}/${id}`).then(response => response.data);
   }
 
+  find(name, property) {
+    console.log('find by name:');
+    console.log(name);
+    return axios
+      .get(`${this.url}?${property}=${name}`)
+      .then(response => response.data);
+  }
+
   getFriends(id) {
     return axios
       .get(`${this.url}/${id}/friends`)
