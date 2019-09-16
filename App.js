@@ -38,7 +38,7 @@ const App = () => {
           barStyle="light-content"
           hidden={false}
           color="#fff"
-          backgroundColor={theme.primary}
+          backgroundColor={theme.colors.colorPrimaryDark}
           translucent={false}
         />
         <AppNavigator />

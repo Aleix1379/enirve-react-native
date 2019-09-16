@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axiosClient from './axiosClient';
 import SharedService from './sharedService';
 
 class UserService {
@@ -9,26 +9,30 @@ class UserService {
   }
 
   getUserById(id) {
-    return axios.get(`${this.url}/${id}`).then(response => response.data);
+    return axiosClient.get(`${this.url}/${id}`).then(response => response.data);
   }
 
   find(name, property) {
-    console.log('find by name:');
-    console.log(name);
-    return axios
+    return axiosClient
       .get(`${this.url}?${property}=${name}`)
       .then(response => response.data);
   }
 
+  updateUser(id, data) {
+    return axiosClient
+      .put(`${this.url}/${id}`, data)
+      .then(response => response.data);
+  }
+
   getFriends(id) {
-    return axios
+    return axiosClient
       .get(`${this.url}/${id}/friends`)
       .then(response => response.data);
   }
 
   createToken(email, password) {
     // return this.http.post<Token>(this.tokenUrl, {email, password});
-    return axios
+    return axiosClient
       .post(this.tokenUrl, {email, password})
       .then(response => response.data);
   }

@@ -1,8 +1,22 @@
 import React from 'react';
-import {Title, withTheme} from 'react-native-paper';
+import {withTheme} from 'react-native-paper';
+import UserFormComponent from './UserFormComponent';
+import {connect} from 'react-redux';
+import {login} from '../actions/user';
 
 const SignUpComponent = () => {
-  return <Title>Crea un usuari 🤓😎😜🤣😂😭😏</Title>;
+  return (
+    <UserFormComponent
+      setReadMode={this.setReadMode}
+      actionLabel="REGISTER"
+      updateUser={false}
+    />
+  );
 };
 
-export default withTheme(SignUpComponent);
+export default connect(
+  state => ({user: state.user}),
+  {
+    login: login,
+  },
+)(withTheme(SignUpComponent));
