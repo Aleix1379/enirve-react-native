@@ -13,6 +13,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import ImagePicker from 'react-native-image-picker';
 import LoadingComponent from './LoadingComponent';
 import Modal from 'react-native-modal';
 import ImageViewerComponent from './ImageViewerComponent';
@@ -51,6 +52,9 @@ class UserFormComponent extends Component {
       },
     };
 
+    console.log('user:');
+    console.log(this.state.user);
+
     if (!this.state.user.picture) {
       console.log('updating image...');
       this.state.user = {
@@ -81,8 +85,8 @@ class UserFormComponent extends Component {
       paddingHorizontal: 24,
     },
     picture: {
-      height: 60,
-      width: 60,
+      height: 120,
+      width: 120,
       borderRadius: 60,
       alignSelf: 'center',
     },
@@ -287,6 +291,42 @@ class UserFormComponent extends Component {
     this.setState({isModalVisible: !this.state.isModalVisible});
   };
 
+  choosePicture = () => {
+    const options = {
+      title: 'Choose a picture',
+      storageOptions: {
+        skipBackup: true,
+        path: 'images',
+      },
+    };
+
+    ImagePicker.showImagePicker(options, response => {
+      console.log('Response = ', response);
+
+      if (response.didCancel) {
+        console.log('User cancelled image picker');
+      } else if (response.error) {
+        console.log('ImagePicker Error: ', response.error);
+      } else if (response.customButton) {
+        console.log('User tapped custom button: ', response.customButton);
+      } else {
+        const user = {...this.state.user};
+        user.picture = response.data;
+        console.log('user picture:');
+        console.log(user.picture);
+        this.setState({user});
+      }
+    });
+  };
+
+  getPicture = picture => {
+    if (picture.startsWith('/')) {
+      return `data:image/gif;base64,${picture}`;
+    } else {
+      return `https://enirve.com/api/v1/public/images/${picture}?random_number= ${new Date().getTime()}`;
+    }
+  };
+
   render() {
     return (
       <ScrollView>
@@ -296,7 +336,7 @@ class UserFormComponent extends Component {
         />
         <Modal isVisible={this.state.isModalVisible} swipeDirection="up">
           <ImageViewerComponent
-            imageName={this.state.user.picture}
+            imageName={this.getPicture(this.state.user.picture)}
             closeModal={this.toggleModal}
           />
         </Modal>
@@ -307,13 +347,11 @@ class UserFormComponent extends Component {
             <Image
               style={this.styles.picture}
               source={{
-                uri:
-                  'https://enirve.com/api/v1/public/images/' +
-                  this.state.user.picture,
+                uri: this.getPicture(this.state.user.picture),
               }}
             />
           </TouchableOpacity>
-          <Button mode="text" onPress={() => console.log('Pressed')}>
+          <Button mode="text" onPress={() => this.choosePicture()}>
             Choose a picture
           </Button>
           {this.state.user.progress ? (

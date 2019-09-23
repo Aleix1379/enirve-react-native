@@ -38,7 +38,7 @@ const ImageViewerComponent = props => {
         style={styles.picture}
         resizeMode="cover"
         source={{
-          uri: 'https://enirve.com/api/v1/public/images/' + props.imageName,
+          uri: props.imageName,
         }}
       />
     </View>

@@ -1,5 +1,11 @@
 import React, {Component} from 'react';
-import {Image, View, StyleSheet, ScrollView, TouchableOpacity} from 'react-native';
+import {
+  Image,
+  View,
+  StyleSheet,
+  ScrollView,
+  TouchableOpacity,
+} from 'react-native';
 import {Button, Text, withTheme} from 'react-native-paper';
 import {connect} from 'react-redux';
 import {login} from '../actions/user';
@@ -11,6 +17,7 @@ class UserComponent extends Component {
     super(props);
     this.state = {
       isModalVisible: false,
+      user: {...props.user, ...{password: ''}},
     };
   }
 
@@ -64,12 +71,20 @@ class UserComponent extends Component {
     this.setState({isModalVisible: !this.state.isModalVisible});
   };
 
+  getPicture = picture => {
+    if (picture.startsWith('/')) {
+      return `data:image/gif;base64,${picture}`;
+    } else {
+      return `https://enirve.com/api/v1/public/images/${picture}?random_number=${new Date().getTime()}`;
+    }
+  };
+
   render() {
     return (
       <View style={this.styles.scrollView}>
         <Modal isVisible={this.state.isModalVisible} swipeDirection="up">
           <ImageViewerComponent
-            imageName={this.props.user.picture}
+            imageName={this.getPicture(this.state.user.picture)}
             closeModal={this.toggleModal}
           />
         </Modal>
@@ -80,9 +95,8 @@ class UserComponent extends Component {
             <Image
               style={this.styles.picture}
               source={{
-                uri:
-                  'https://enirve.com/api/v1/public/images/' +
-                  this.props.user.picture,
+                uri: this.getPicture(this.state.user.picture),
+                cache: 'reload',
               }}
             />
           </TouchableOpacity>

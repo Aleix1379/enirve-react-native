@@ -52,6 +52,14 @@ class ProfileFriendsComponent extends Component {
       : defaultStyle;
   };
 
+  getPicture = picture => {
+    if (picture.startsWith('/')) {
+      return `data:image/gif;base64,${picture}`;
+    } else {
+      return `https://enirve.com/api/v1/public/images/${picture}?random_number=${new Date().getTime()}`;
+    }
+  };
+
   render() {
     return (
       <FlatList
@@ -69,7 +77,7 @@ class ProfileFriendsComponent extends Component {
             <Image
               style={this.styles.friendImage}
               source={{
-                uri: 'https://enirve.com/api/v1/public/images/' + item.picture,
+                uri: this.getPicture(item.picture),
               }}
             />
             <Text
