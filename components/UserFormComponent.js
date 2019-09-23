@@ -266,7 +266,11 @@ class UserFormComponent extends Component {
             this.state.user,
           );
         } else {
-          console.log('create user...');
+          console.log('create user... DATA:');
+          console.log(this.state.user);
+          updateResult = await this.userService.createUser(this.state.user);
+          this.setState({loadingVisible: false});
+          this.props.goToLoginPage(updateResult.email);
           return null;
         }
         this.setState({loadingVisible: false});

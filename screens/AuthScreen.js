@@ -53,9 +53,18 @@ class AuthScreen extends Component {
     }
   };
 
+  goToPage = (pageId, email) => {
+    this.tabView.goToPage(pageId);
+    this.setState({email});
+  };
+
   render() {
     return (
-      <ScrollableTabView>
+      <ScrollableTabView
+        initialPage={0}
+        ref={tabView => {
+          this.tabView = tabView;
+        }}>
         <SignInComponent
           tabLabel="Sign In"
           email={this.state.email}
@@ -66,7 +75,10 @@ class AuthScreen extends Component {
           loading={this.state.loadingVisible}
           error={this.state.error}
         />
-        <SignUpComponent tabLabel="Sign Up" />
+        <SignUpComponent
+          tabLabel="Sign Up"
+          goToLoginPage={email => this.goToPage(0, email)}
+        />
       </ScrollableTabView>
     );
   }

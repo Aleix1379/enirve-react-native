@@ -24,6 +24,10 @@ class UserService {
       .then(response => response.data);
   }
 
+  createUser(data) {
+    return axiosClient.post(this.url, data).then(response => response.data);
+  }
+
   getFriends(id) {
     return axiosClient
       .get(`${this.url}/${id}/friends`)

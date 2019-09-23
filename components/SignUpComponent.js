@@ -4,12 +4,13 @@ import UserFormComponent from './UserFormComponent';
 import {connect} from 'react-redux';
 import {login} from '../actions/user';
 
-const SignUpComponent = () => {
+const SignUpComponent = props => {
   return (
     <UserFormComponent
       setReadMode={this.setReadMode}
       actionLabel="REGISTER"
       updateUser={false}
+      goToLoginPage={props.goToLoginPage}
     />
   );
 };
