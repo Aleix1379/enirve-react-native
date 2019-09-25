@@ -1,6 +1,6 @@
 import React from 'react';
 import {StatusBar} from 'react-native';
-import AppNavigator from './Navigator';
+import BottomTabNavigator from './Navigator';
 import {DefaultTheme, Provider as PaperProvider} from 'react-native-paper';
 import {Provider as StoreProvider} from 'react-redux';
 import store from './store';
@@ -17,11 +17,11 @@ const theme = {
     colorSecondaryDark: '#FFAC00',
     colorGreyLight1: '#f7f7f7',
     colorGreyLight2: '#e6e6e6',
-    colorGreyDark1: '#999',
-    colorGreyDark2: '#777',
-    colorGreyDark3: '#333',
-    colorWhite: '#fff',
-    colorBlack: '#000',
+    colorGreyDark1: '#999999',
+    colorGreyDark2: '#777777',
+    colorGreyDark3: '#333333',
+    colorWhite: '#ffffff',
+    colorBlack: '#000000',
     colorGold: '#FFD700',
     colorSilver: '#C0C0C0',
     colorBronze: '#ccb66f',
@@ -41,7 +41,7 @@ const App = () => {
           backgroundColor={theme.colors.colorPrimaryDark}
           translucent={false}
         />
-        <AppNavigator />
+        <BottomTabNavigator />
       </PaperProvider>
     </StoreProvider>
   );

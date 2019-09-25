@@ -17,7 +17,6 @@ import ImagePicker from 'react-native-image-picker';
 import LoadingComponent from './LoadingComponent';
 import Modal from 'react-native-modal';
 import ImageViewerComponent from './ImageViewerComponent';
-import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 import UserService from '../services/userService';
 import {connect} from 'react-redux';
 import {login} from '../actions/user';
@@ -364,88 +363,86 @@ class UserFormComponent extends Component {
             </Text>
           ) : null}
           <View stlye={this.styles.form}>
-            <KeyboardAwareScrollView>
-              <View>
-                <TextInput
-                  style={this.styles.input}
-                  mode="outlined"
-                  label="Username"
-                  value={this.state.user.username}
-                  error={!this.state.errors.username.validated}
-                  onChangeText={text => this.setInput(text, 'username')}
-                />
-                <HelperText
-                  style={this.styles.error}
-                  error={!this.state.errors.username.validated}>
-                  {this.state.errors.username.errorMessage}
-                </HelperText>
-              </View>
-              <View>
-                <TextInput
-                  style={this.styles.input}
-                  mode="outlined"
-                  label="Email"
-                  textContentType="emailAddress"
-                  keyboardType="email-address"
-                  value={this.state.user.email}
-                  error={!this.state.errors.email.validated}
-                  onChangeText={text => this.setInput(text, 'email')}
-                />
-                <HelperText
-                  style={this.styles.error}
-                  error={!this.state.errors.email.validated}>
-                  {this.state.errors.email.errorMessage}
-                </HelperText>
-              </View>
-              <View>
-                <TextInput
-                  style={this.styles.input}
-                  mode="outlined"
-                  label="Password"
-                  textContentType="password"
-                  secureTextEntry={true}
-                  value={this.state.user.password}
-                  placeholder="********"
-                  error={!this.state.errors.password.validated}
-                  onChangeText={text => this.setInput(text, 'password')}
-                />
-                <HelperText
-                  style={this.styles.error}
-                  error={!this.state.errors.password.validated}>
-                  {this.state.errors.password.errorMessage}
-                </HelperText>
-              </View>
-              <View>
-                <TextInput
-                  style={this.styles.input}
-                  mode="outlined"
-                  label="Repeat the password"
-                  textContentType="password"
-                  secureTextEntry={true}
-                  value={this.state.passwordRepeat}
-                  placeholder="********"
-                  error={!this.state.errors.passwordRepeat.validated}
-                  onChangeText={text => this.setInput(text, 'passwordRepeat')}
-                />
-                <HelperText
-                  style={this.styles.error}
-                  error={!this.state.errors.passwordRepeat.validated}>
-                  {this.state.errors.passwordRepeat.errorMessage}
-                </HelperText>
-              </View>
-              <Button
-                style={this.styles.cancel}
-                mode="contained"
-                onPress={() => this.props.setReadMode(true)}>
-                CANCEL
-              </Button>
-              <Button
-                style={this.styles.button}
-                mode="contained"
-                onPress={() => this.saveProfile()}>
-                {this.props.actionLabel}
-              </Button>
-            </KeyboardAwareScrollView>
+            <View>
+              <TextInput
+                style={this.styles.input}
+                mode="outlined"
+                label="Username"
+                value={this.state.user.username}
+                error={!this.state.errors.username.validated}
+                onChangeText={text => this.setInput(text, 'username')}
+              />
+              <HelperText
+                style={this.styles.error}
+                error={!this.state.errors.username.validated}>
+                {this.state.errors.username.errorMessage}
+              </HelperText>
+            </View>
+            <View>
+              <TextInput
+                style={this.styles.input}
+                mode="outlined"
+                label="Email"
+                textContentType="emailAddress"
+                keyboardType="email-address"
+                value={this.state.user.email}
+                error={!this.state.errors.email.validated}
+                onChangeText={text => this.setInput(text, 'email')}
+              />
+              <HelperText
+                style={this.styles.error}
+                error={!this.state.errors.email.validated}>
+                {this.state.errors.email.errorMessage}
+              </HelperText>
+            </View>
+            <View>
+              <TextInput
+                style={this.styles.input}
+                mode="outlined"
+                label="Password"
+                textContentType="password"
+                secureTextEntry={true}
+                value={this.state.user.password}
+                placeholder="********"
+                error={!this.state.errors.password.validated}
+                onChangeText={text => this.setInput(text, 'password')}
+              />
+              <HelperText
+                style={this.styles.error}
+                error={!this.state.errors.password.validated}>
+                {this.state.errors.password.errorMessage}
+              </HelperText>
+            </View>
+            <View>
+              <TextInput
+                style={this.styles.input}
+                mode="outlined"
+                label="Repeat the password"
+                textContentType="password"
+                secureTextEntry={true}
+                value={this.state.passwordRepeat}
+                placeholder="********"
+                error={!this.state.errors.passwordRepeat.validated}
+                onChangeText={text => this.setInput(text, 'passwordRepeat')}
+              />
+              <HelperText
+                style={this.styles.error}
+                error={!this.state.errors.passwordRepeat.validated}>
+                {this.state.errors.passwordRepeat.errorMessage}
+              </HelperText>
+            </View>
+            <Button
+              style={this.styles.cancel}
+              mode="contained"
+              onPress={() => this.props.setReadMode(true)}>
+              CANCEL
+            </Button>
+            <Button
+              style={this.styles.button}
+              mode="contained"
+              onPress={() => this.saveProfile()}>
+              {this.props.actionLabel}
+            </Button>
           </View>
         </View>
       </ScrollView>

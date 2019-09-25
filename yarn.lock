@@ -5493,6 +5493,11 @@ react-native-gesture-handler@^1.4.1:
     invariant "^2.2.4"
     prop-types "^15.7.2"
 
+react-native-horizontal-progress-bar@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/react-native-horizontal-progress-bar/-/react-native-horizontal-progress-bar-1.0.0.tgz#7b3b1ffb8166e990d517b897918e396681c24b91"
+  integrity sha512-kOpnvAeb3KOaaUGWmN3KRU50KDmxzIl5hUXKjCBa/2UxO5t1qA55X4JAin2HapQeiTgqrvjISawfhUnbRA6HfQ==
+
 react-native-image-picker@^1.1.0:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/react-native-image-picker/-/react-native-image-picker-1.1.0.tgz#c2a0523886edb4cf2cdc008ad0a71433142a4d53"

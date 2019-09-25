@@ -9,6 +9,7 @@ import ProfileScreen from './screens/ProfileScreen';
 import LoginScreen from './screens/AuthScreen';
 import {createStackNavigator} from 'react-navigation-stack';
 import FriendsScreen from './screens/FriendsScreen';
+import ExercisesScreen from './screens/ExercisesScreen';
 
 export const AuthNavigator = createStackNavigator(
   {
@@ -25,13 +26,57 @@ export const AuthNavigator = createStackNavigator(
   },
 );
 
-const AppNavigator = createMaterialBottomTabNavigator(
+/*const HomeStack = createStackNavigator(
   {
-    Home: {
+    HomeRoot: {
       screen: HomeScreen,
       navigationOptions: {
+        header: null,
+      },
+    },
+    Exercises: {
+      screen: ExercisesScreen,
+    },
+  },
+  {
+    initialRouteName: 'HomeRoot',
+  },
+);*/
+
+/*HomeStack.navigationOptions = ({navigation}) => {
+  let tabBarVisible = true;
+
+  console.log('navigation.state.index: ' + navigation.state.index);
+
+  if (navigation.state.index > 0) {
+    console.log('tabBarVisible FALSE');
+    tabBarVisible = false;
+  }
+
+  console.log(`TabBarVisible: ${tabBarVisible}`);
+
+  return {
+    tabBarVisible,
+  };
+};*/
+
+const HomeStack = createStackNavigator({
+  Home: {
+    screen: HomeScreen,
+    navigationOptions: {
+      header: null,
+    },
+  },
+});
+
+const BottomTabNavigator = createMaterialBottomTabNavigator(
+  {
+    Home: {
+      screen: HomeStack,
+      navigationOptions: {
+        header: null,
         tabBarIcon: ({tintColor}) => (
-          <FontAwesomeIcon size={22} color={tintColor} icon={faCrown} />
+          <FontAwesomeIcon size={22} color={tintColor} icon={faCrown}/>
         ),
       },
     },
@@ -39,7 +84,7 @@ const AppNavigator = createMaterialBottomTabNavigator(
       screen: FriendsScreen,
       navigationOptions: {
         tabBarIcon: ({tintColor}) => (
-          <FontAwesomeIcon size={22} color={tintColor} icon={faUsers} />
+          <FontAwesomeIcon size={22} color={tintColor} icon={faUsers}/>
         ),
       },
     },
@@ -47,7 +92,7 @@ const AppNavigator = createMaterialBottomTabNavigator(
       screen: ProfileScreen,
       navigationOptions: {
         tabBarIcon: ({tintColor}) => (
-          <FontAwesomeIcon size={22} color={tintColor} icon={faUser} />
+          <FontAwesomeIcon size={22} color={tintColor} icon={faUser}/>
         ),
       },
     },
@@ -57,11 +102,22 @@ const AppNavigator = createMaterialBottomTabNavigator(
   },
 );
 
+const HomeDetailStack = createStackNavigator({
+  Tabs: {
+    screen: BottomTabNavigator,
+    navigationOptions: {
+      header: null,
+    },
+  },
+  Exercises: ExercisesScreen,
+});
+
 export default createAppContainer(
   createSwitchNavigator(
     {
       Auth: AuthNavigator,
-      App: AppNavigator,
+      App: BottomTabNavigator,
+      HomeDetailStack: HomeDetailStack,
     },
     {
       initialRouteName: 'App',

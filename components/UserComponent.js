@@ -61,7 +61,7 @@ class UserComponent extends Component {
       fontSize: 20,
     },
     button: {
-      marginTop: 'auto',
+      marginTop: 32,
       marginBottom: 16,
       marginHorizontal: 16,
     },

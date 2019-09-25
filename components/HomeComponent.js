@@ -64,11 +64,10 @@ class HomeComponent extends Component {
     },
   });
 
-  getIconVerbCompleted(sectionId, verbId) {
+  isVerbCompleted(sectionId, verbId) {
     if (!this.props.user) {
-      return null;
+      return false;
     }
-
     const section = this.props.user.progress.activity.find(
       activity => activity.sectionId === sectionId,
     );
@@ -76,21 +75,39 @@ class HomeComponent extends Component {
     if (section) {
       const currentVerb = section.verbs.find(verb => verb.id === verbId);
       if (currentVerb && currentVerb.completed) {
-        return (
-          <FontAwesomeIcon style={this.styles.verbCheck} icon={faCheckCircle} />
-        );
+        return true;
       }
     }
+    return false;
+  }
+
+  getIconVerbCompleted(sectionId, verbId) {
+    if (!this.props.user) {
+      return null;
+    }
+
+    if (this.isVerbCompleted(sectionId, verbId)) {
+      return (
+        <FontAwesomeIcon style={this.styles.verbCheck} icon={faCheckCircle} />
+      );
+    }
+
     return null;
   }
 
   start(section) {
-    console.log('start exercice section!');
-    console.log(section);
-    console.log(
-      '*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#*#',
-    );
+    this.props.navigation.navigate('Exercises', {section});
   }
+
+  getVerbCompleted = (sectionId, verbId) => {
+    const styles = {...this.styles.verb};
+
+    if (this.isVerbCompleted(sectionId, verbId)) {
+      styles.color = this.props.theme.colors.colorGreen;
+    }
+
+    return styles;
+  };
 
   render() {
     return (
@@ -110,7 +127,10 @@ class HomeComponent extends Component {
                 {item.verbs.map(verb => (
                   <View key={verb.id}>
                     {this.getIconVerbCompleted(item.id, verb.id)}
-                    <Text style={this.styles.verb}> {verb.present}</Text>
+                    <Text style={this.getVerbCompleted(item.id, verb.id)}>
+                      {' '}
+                      {verb.present}
+                    </Text>
                   </View>
                 ))}
               </View>

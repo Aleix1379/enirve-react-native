@@ -611,7 +611,12 @@ class HomeScreen extends Component {
   }
 
   render() {
-    return <HomeComponent sections={this.state.sections} />;
+    return (
+      <HomeComponent
+        sections={this.state.sections}
+        navigation={this.props.navigation}
+      />
+    );
   }
 }
 

@@ -4,6 +4,7 @@ import {login} from '../actions/user';
 import {withTheme} from 'react-native-paper';
 import UserFormComponent from './UserFormComponent';
 import UserComponent from './UserComponent';
+import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
 class ProfileUserComponent extends Component {
   constructor(props) {
@@ -18,7 +19,7 @@ class ProfileUserComponent extends Component {
     this.setState({readMode: value});
   };
 
-  render() {
+  getForm() {
     return this.state.readMode ? (
       <UserComponent setReadMode={this.setReadMode} />
     ) : (
@@ -27,6 +28,14 @@ class ProfileUserComponent extends Component {
         actionLabel="UPDATE"
         updateUser={true}
       />
+    );
+  }
+
+  render() {
+    return (
+      <KeyboardAwareScrollView resetScrollToCoords={{x: 0, y: 0}} scrollEnabled>
+        {this.getForm()}
+      </KeyboardAwareScrollView>
     );
   }
 }
