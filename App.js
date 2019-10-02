@@ -22,6 +22,7 @@ const theme = {
     colorGreyDark3: '#333333',
     colorWhite: '#ffffff',
     colorBlack: '#000000',
+    colorDark: '#424242',
     colorGold: '#FFD700',
     colorSilver: '#C0C0C0',
     colorBronze: '#ccb66f',

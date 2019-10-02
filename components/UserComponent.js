@@ -1,11 +1,5 @@
 import React, {Component} from 'react';
-import {
-  Image,
-  View,
-  StyleSheet,
-  ScrollView,
-  TouchableOpacity,
-} from 'react-native';
+import {Image, StyleSheet, TouchableOpacity, View} from 'react-native';
 import {Button, Text, withTheme} from 'react-native-paper';
 import {connect} from 'react-redux';
 import {login} from '../actions/user';

@@ -6,6 +6,12 @@ import {KeyboardAwareScrollView} from 'react-native-keyboard-aware-scroll-view';
 
 class ExercisesScreen extends Component {
   static navigationOptions = ({navigation}) => {
+    const mistakes = navigation.getParam('mistakes');
+    if (mistakes?.length > 0) {
+      console.log('1] MISTAKES:::');
+      console.log(mistakes);
+    }
+
     const section = navigation.getParam('section');
     return {
       title: section?.title,
@@ -113,7 +119,6 @@ class ExercisesScreen extends Component {
   };
 
   next = () => {
-    console.log('next...');
     this.setState({pastSimple: ''});
     this.setState({pastParticiple: ''});
     this.setState({
@@ -127,11 +132,9 @@ class ExercisesScreen extends Component {
     this.setState({verbChecked: false});
 
     this.setState({index: this.state.index + 1}, () => {
-      console.log(`2) this.state.index: ${this.state.index}`);
       this.setState({
         currentVerb: this.state.section.verbs[this.state.index],
       });
-      console.log(`3) this.state.index: ${this.state.index}`);
     });
   };
 
@@ -141,6 +144,11 @@ class ExercisesScreen extends Component {
     } else {
       if (this.state.index === this.state.section.verbs.length - 1) {
         console.log('go to resume...');
+        this.props.navigation.navigate('Resume', {
+          progress: this.state.progress,
+          mistakes: this.state.mistakes,
+          section: this.state.section,
+        });
       } else {
         this.next();
       }

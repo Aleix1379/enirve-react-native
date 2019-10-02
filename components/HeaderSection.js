@@ -21,9 +21,9 @@ class HeaderSection extends Component {
       position: 'absolute',
       top: '50%',
       left: 24,
-      marginTop: 32,
+      marginTop: 28,
       color: this.props.theme.colors.colorGreyDark2,
-      fontSize: 12,
+      fontSize: 16,
     },
     circularProgress: {
       zIndex: 1000,
@@ -80,7 +80,7 @@ class HeaderSection extends Component {
       return this.props.theme.colors.colorBronze;
     }
 
-    return this.props.theme.colors.colorGreyLight2;
+    return this.props.theme.colors.colorDark;
   }
 
   render() {
@@ -99,7 +99,7 @@ class HeaderSection extends Component {
           rotation={-360}
           duration={2000}
           fill={this.getProgressPercentage()}
-          tintColor={this.getProgressColor()}
+          tintColor={this.props.theme.colors.colorGold}
           backgroundColor="#eee">
           {() => (
             <Text style={this.styles.circularProgressTitle}>

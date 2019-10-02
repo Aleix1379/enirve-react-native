@@ -10,6 +10,7 @@ import LoginScreen from './screens/AuthScreen';
 import {createStackNavigator} from 'react-navigation-stack';
 import FriendsScreen from './screens/FriendsScreen';
 import ExercisesScreen from './screens/ExercisesScreen';
+import ResumeScreen from './screens/ResumeScreen';
 
 export const AuthNavigator = createStackNavigator(
   {
@@ -76,7 +77,7 @@ const BottomTabNavigator = createMaterialBottomTabNavigator(
       navigationOptions: {
         header: null,
         tabBarIcon: ({tintColor}) => (
-          <FontAwesomeIcon size={22} color={tintColor} icon={faCrown}/>
+          <FontAwesomeIcon size={22} color={tintColor} icon={faCrown} />
         ),
       },
     },
@@ -84,7 +85,7 @@ const BottomTabNavigator = createMaterialBottomTabNavigator(
       screen: FriendsScreen,
       navigationOptions: {
         tabBarIcon: ({tintColor}) => (
-          <FontAwesomeIcon size={22} color={tintColor} icon={faUsers}/>
+          <FontAwesomeIcon size={22} color={tintColor} icon={faUsers} />
         ),
       },
     },
@@ -92,7 +93,7 @@ const BottomTabNavigator = createMaterialBottomTabNavigator(
       screen: ProfileScreen,
       navigationOptions: {
         tabBarIcon: ({tintColor}) => (
-          <FontAwesomeIcon size={22} color={tintColor} icon={faUser}/>
+          <FontAwesomeIcon size={22} color={tintColor} icon={faUser} />
         ),
       },
     },
@@ -110,6 +111,12 @@ const HomeDetailStack = createStackNavigator({
     },
   },
   Exercises: ExercisesScreen,
+  Resume: {
+    screen: ResumeScreen,
+    navigationOptions: {
+      header: null,
+    },
+  },
 });
 
 export default createAppContainer(

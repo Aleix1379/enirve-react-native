@@ -35,9 +35,16 @@ class UserService {
   }
 
   createToken(email, password) {
-    // return this.http.post<Token>(this.tokenUrl, {email, password});
     return axiosClient
       .post(this.tokenUrl, {email, password})
+      .then(response => response.data);
+  }
+
+  updateProgress(userId, data) {
+    console.log('update progress url:');
+    console.log(`${this.url}/${userId}/progress`);
+    return axiosClient
+      .put(`${this.url}/${userId}/progress`, data)
       .then(response => response.data);
   }
 }

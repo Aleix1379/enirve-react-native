@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import {View, FlatList, StyleSheet} from 'react-native';
-import {withTheme, Text, Button} from 'react-native-paper';
+import {FlatList, StyleSheet, View} from 'react-native';
+import {Button, Text, withTheme} from 'react-native-paper';
 import {connect} from 'react-redux';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faCheckCircle} from '@fortawesome/free-solid-svg-icons';
@@ -10,6 +10,10 @@ import HeaderSection from './HeaderSection';
 class HomeComponent extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      sections: [],
+    };
   }
 
   styles = StyleSheet.create({
@@ -109,12 +113,21 @@ class HomeComponent extends Component {
     return styles;
   };
 
+  componentDidMount() {
+    this.loadSections();
+  }
+
+  loadSections() {
+    this.setState({sections: this.props.sections});
+  }
+
   render() {
     return (
       <View>
         <FlatList
+          id={this.props.user?.code}
           style={this.styles.sectionList}
-          data={this.props.sections}
+          data={this.state.sections}
           keyExtractor={item => item.id.toString()}
           renderItem={({item}) => (
             <View style={this.styles.sectionRow}>
