@@ -726,11 +726,12 @@
 			baseConfigurationReference = 75EA30159EBA824231164A7F /* Pods-Enirve.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEAD_CODE_STRIPPING = NO;
 				DEVELOPMENT_TEAM = WS8D2UQL5V;
 				INFOPLIST_FILE = Enirve/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 3.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -738,6 +739,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.aleixmp.eiv;
 				PRODUCT_NAME = Enirve;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -747,10 +749,11 @@
 			baseConfigurationReference = E5FF34F03B3D1E207527FB0A /* Pods-Enirve.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = WS8D2UQL5V;
 				INFOPLIST_FILE = Enirve/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 3.0;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-ObjC",
@@ -758,6 +761,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.aleixmp.eiv;
 				PRODUCT_NAME = Enirve;
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;

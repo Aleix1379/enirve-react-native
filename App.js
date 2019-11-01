@@ -1,5 +1,5 @@
 import React from 'react';
-import {StatusBar} from 'react-native';
+import {StatusBar, SafeAreaView} from 'react-native';
 import BottomTabNavigator from './Navigator';
 import {DefaultTheme, Provider as PaperProvider} from 'react-native-paper';
 import {Provider as StoreProvider} from 'react-redux';
@@ -42,7 +42,9 @@ const App = () => {
           backgroundColor={theme.colors.colorPrimaryDark}
           translucent={false}
         />
-        <BottomTabNavigator />
+        <SafeAreaView style={{flex: 1, backgroundColor: '#fff'}}>
+          <BottomTabNavigator />
+        </SafeAreaView>
       </PaperProvider>
     </StoreProvider>
   );

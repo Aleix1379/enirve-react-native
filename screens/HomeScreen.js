@@ -71,9 +71,15 @@ class HomeScreen extends Component {
       this.setState({
         loading: false,
       });
-      console.error('Error descarregant usuari');
-      console.error(error);
+      console.log('Error descarregant usuari');
+      console.log(`RESULT CODE:::=>>${error.response.status}`);
+      console.log(error);
       this.loadProgress(this.verbService.getDefaultProgress());
+
+      if (error.response.status === 401) {
+        this.storageService.removeAuthToken().catch(console.error);
+        this.props.navigation.navigate('Login');
+      }
     }
   };
 
